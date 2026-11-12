@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Web Dashers Arcade Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121214;
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Top Navbar */
+        .navbar {
+            background-color: #1a1a1f;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid #25252b;
+        }
+
+        .back-btn {
+            color: #4fc3f7;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        /* Master Arcade Split Layout */
+        .arcade-layout {
+            display: flex;
+            flex: 1;
+            width: 100%;
+            height: calc(100vh - 54px);
+        }
+
+        /* Sidebar Panels (Left & Right Rails) */
+        .sidebar {
+            width: 250px;
+            background-color: #16161a;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            overflow-y: auto;
+            border-right: 1px solid #25252b;
+        }
+
+        .sidebar.right {
+            border-right: none;
+            border-left: 1px solid #25252b;
+        }
+
+        .sidebar h3 {
+            font-size: 14px;
+            color: #777;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Mini Game Cards inside Sidebars */
+        .mini-card {
+            position: relative;
+            width: 100%;
+            height: 90px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid #2e2e38;
+            cursor: pointer;
+            background-color: #1e1e24; /* Color shows up if proxy images lag */
+            transition: all 0.25s ease;
+        }
+
+        .mini-card:hover {
+            transform: scale(1.03);
+            border-color: #4fc3f7;
+            box-shadow: 0 4px 12px rgba(79, 195, 247, 0.2);
+        }
+
+        .mini-game-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Card Label Styling */
+        .mini-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.4) 100%);
+            padding: 8px 12px;
+            box-sizing: border-box;
+        }
+
+        .mini-title {
+            color: white;
+            font-size: 13px;
+            font-weight: bold;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+        }
+
+        /* Central Game Stage Area */
+        .game-stage {
+            flex: 1;
+            background-color: #0b0b0d;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* The Main Embedded Screen Frame Box */
+        .game-frame-container {
+            width: 100%;
+            max-width: 950px;
+            height: 600px;
+            background-color: #1e1e24;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid #2f2f3b;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            transition: all 0.3s ease;
+        }
+
+        .game-frame-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Controls Panel Menu */
+        .controls-panel {
+            width: 100%;
+            max-width: 950px;
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            justify-content: flex-end;
+        }
+
+        .control-btn {
+            background-color: #1e1e24;
+            color: #4fc3f7;
+            border: 1px solid #2f2f3b;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .control-btn:hover {
+            background-color: #25252b;
+            border-color: #4fc3f7;
+            color: white;
+        }
+
+        /* Toggle states for Theater Mode */
+        .hide-sidebar {
+            display: none !important;
+        }
+
+        .theater-grow {
+            max-width: 100% !important;
+            height: 80vh !important;
+        }
+        /* Locks the size of the game card box */
+.game-card {
+    position: relative;
+    width: 240px;  /* Adjust this to make all homepage cards wider or narrower */
+    height: 300px; /* Adjust this to make all homepage cards taller or shorter */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    transition: transform 0.25s ease; /* Smoothly pops the card up on hover */
+}
+
+/* Optional: Makes the whole card grow slightly when hovered */
+.game-card:hover {
+    transform: scale(1.05);
+}
+
+/* Forces any image inside to fill the box without stretching */
+.game-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;       /* Crops the edges instead of squishing the picture */
+    object-position: center; /* Keeps the middle of the picture centered */
+    display: block;
+}
+    /* Top Navigation Bar */
+.arcade-navbar {
+    background-color: #1a1a1f;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid #292933;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Website Logo / Home Link */
+.nav-brand {
+    color: #4fc3f7;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    white-space: nowrap;
+    margin-right: 20px;
+}
+
+/* Container for the game links */
+.nav-links {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto; /* Lets users scroll sideways if you add lots of games */
+    padding-bottom: 2px;
+}
+
+/* Individual Game Buttons */
+.nav-item {
+    color: #e0e0e0;
+    background-color: #25252d;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: 1px solid #32323e;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+    background-color: #4fc3f7;
+    color: #121214;
+    border-color: #4fc3f7;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+    <nav class="arcade-navbar">
+        <a href="index.html" class="nav-brand">Skipper's Arcade</a>
+        <div class="nav-links" id="navbar-games">
+            <!-- JavaScript will automatically fill this with your games -->
+        </div>
+    </nav>
+</header>
+
+    <!-- Top Navigation Header -->
+    <div class="navbar">
+        <a href="index.html" class="back-btn">← Back to Hub</a>
+    </div>
+
+    <!-- Clean Arcade Grid Layout Container -->
+    <div class="arcade-layout">
+
+        <!-- Left Sidebar Rail -->
+        <div class="sidebar" id="left-sidebar-grid">
+            <h3>Hot Games</h3>
+        </div>
+
+        <!-- Single Center Main Stage Panel -->
+        <div class="game-stage" id="main-stage">
+            <div class="game-frame-container" id="frame-container">
+                <iframe src="https://web-dashers.github.io/" id="game-iframe" allow="fullscreen" allowfullscreen></iframe>
+            </div>
+
+            <div class="controls-panel">
+                <button class="control-btn" id="theater-toggle">🎬 Theater Mode</button>
+                <button class="control-btn" id="fullscreen-toggle">🖵 Fullscreen</button>
+            </div>
+        </div>
+
+        <!-- Right Sidebar Rail -->
+        <div class="sidebar right" id="right-sidebar-grid">
+            <h3>You May Also Like</h3>
+        </div>
+
+    </div>
+
+   
+        <!-- Load the shared master list first -->
+<script src="games.js"></script>
+
+<!-- Then build the sidebars and player controls -->
+<script>
+    const leftSidebar = document.getElementById('left-sidebar-grid');
+    const rightSidebar = document.getElementById('right-sidebar-grid');
+    const mainIframe = document.getElementById('game-iframe');
+
+    masterGamesList.forEach((game, index) => {
+        const miniCard = document.createElement('div');
+        miniCard.className = "mini-card";
+        miniCard.onclick = () => launchGame(game.url);
+        miniCard.innerHTML = `
+            <img src="${game.image}" alt="${game.name} Cover" class="mini-game-image">
+            <div class="mini-overlay">
+                <span class="mini-title">${game.name}</span>
+            </div>
+        `;
+
+        if (index % 2 === 0) {
+            leftSidebar.appendChild(miniCard);
+        } else {
+            rightSidebar.appendChild(miniCard);
+        }
+    });
+
+    function launchGame(gameUrl) {
+        mainIframe.src = gameUrl;
+    }
+
+    const urlParameters = new URLSearchParams(window.location.search);
+    const targetGameUrl = urlParameters.get('game');
+    if (targetGameUrl) {
+        mainIframe.src = targetGameUrl;
+    }
+
+    const theaterBtn = document.getElementById('theater-toggle');
+    const fullscreenBtn = document.getElementById('fullscreen-toggle');
+    const sidebars = document.querySelectorAll('.sidebar');
+    const frameContainer = document.getElementById('frame-container');
+
+    theaterBtn.addEventListener('click', () => {
+        sidebars.forEach(sidebar => sidebar.classList.toggle('hide-sidebar'));
+        frameContainer.classList.toggle('theater-grow');
+        theaterBtn.textContent = frameContainer.classList.contains('theater-grow') ? '🎬 Normal View' : '🎬 Theater Mode';
+    });
+
+    fullscreenBtn.addEventListener('click', () => {
+        if (!document.fullscreenElement) {
+            frameContainer.requestFullscreen().catch(err => alert(`Fullscreen error: ${err.message}`));
+        } else {
+            document.exitFullscreen();
+        }
+    });
+</script>
+</body>
+</html>

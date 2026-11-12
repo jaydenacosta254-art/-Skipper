@@ -8,7 +8,6 @@ const masterGamesList = [
     { name: "Poxel.io", url: "https://poxel.io/", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7t-bY0rEjLCBY3byctgK4VoYOx-TrhJD6W45p99mBYw&s=10" },
     { name: "Retro Bowl", url: "https://retro-bowl-six.vercel.app", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3RmSjzJOn5RlRpnrh7Iq0sUZsMCLrCj2kCheq1ZVdww&s" },
     { name: "Wacky Flip", url: "https://game.azgame.io/wacky-flip/", image: "https://wacky-flip.io/data/image/wacky-flip.png" },
-    { name: "Chess.com", url: "https://www.justdoinghomework.com/", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRj8P940HZcYBJkwBV3Hc1Cy7LmiEYRy8FaUW8nMUQSGg&s" },
 ];
 
 const navContainer = document.getElementById('navbar-games');

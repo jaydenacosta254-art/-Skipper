@@ -25,7 +25,7 @@ if (navContainer) {
     // Adds the Suggestions & Bug Fixes tab to the navigation bar
     const suggestLink = document.createElement('a');
     suggestLink.className = 'nav-item suggest-tab';
-    suggestLink.textContent = '💡 Suggestions & Bugs';
+    suggestLink.textContent = 'Suggestions & Bugs';
     suggestLink.href = 'suggestions.html';
     navContainer.appendChild(suggestLink);
 }

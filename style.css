@@ -298,3 +298,49 @@ footer {
     color: #888888;
     border-top: 1px solid #292933;
 }
+
+/* Suggestions & Bug Fixes Page Styles */
+.feedback-section {
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.form-box, .changelog-box {
+    background-color: #1a1a1f;
+    border: 1px solid #292933;
+    border-radius: 12px;
+    padding: 24px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form-input {
+    background-color: #121214;
+    color: #ffffff;
+    border: 1px solid #32323e;
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #4fc3f7;
+}
+
+.changelog-item {
+    background-color: #121214;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border-left: 4px solid #4fc3f7;
+    font-size: 14px;
+    color: #e0e0e0;
+}
+
+.suggest-tab {
+    border-color: #4fc3f7;
+    color: #4fc3f7;
+}

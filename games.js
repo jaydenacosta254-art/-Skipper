@@ -10,8 +10,9 @@ const masterGamesList = [
     { name: "Wacky Flip", url: "https://game.azgame.io/wacky-flip/", image: "https://wacky-flip.io/data/image/wacky-flip.png" },
 ];
 
-const navContainer = document.getElementById('navbar-games');
 
+
+const navContainer = document.getElementById('navbar-games');
 if (navContainer) {
     masterGamesList.forEach(game => {
         const navLink = document.createElement('a');
@@ -20,4 +21,11 @@ if (navContainer) {
         navLink.href = `webdashers.html?game=${encodeURIComponent(game.url)}`;
         navContainer.appendChild(navLink);
     });
+
+    // Adds the Suggestions & Bug Fixes tab to the navigation bar
+    const suggestLink = document.createElement('a');
+    suggestLink.className = 'nav-item suggest-tab';
+    suggestLink.textContent = '💡 Suggestions & Bugs';
+    suggestLink.href = 'suggestions.html';
+    navContainer.appendChild(suggestLink);
 }

@@ -27,6 +27,28 @@ body {
 }
 
 /* Top Navigation Bar (Shared across both pages) */
+/* Back to Hub Button Styling */
+.back-btn {
+    color: #4fc3f7;
+    text-decoration: none; /* Removes the underline completely */
+    font-weight: bold;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.back-btn:hover,
+.back-btn:focus,
+.back-btn:active {
+    text-decoration: none; /* Keeps the underline hidden when hovered or clicked */
+    background-color: #25252d;
+    color: #ffffff;
+}
+
 .arcade-navbar {
     background-color: #1a1a1f;
     padding: 12px 24px;

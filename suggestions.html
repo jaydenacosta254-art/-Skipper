@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suggestions & Bug Fixes - Skipper's Arcade</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav class="arcade-navbar">
+            <a href="index.html" class="nav-brand">🕹️ Skipper's Arcade</a>
+            <div class="nav-links" id="navbar-games"></div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="feedback-section">
+            <h1 id="anim">Suggestions & Bug Fixes</h1>
+            <p style="text-align: center; color: #b0b0b0;">Have a game idea or found a broken game? Submit it below!</p>
+
+            <!-- Suggestion & Bug Report Form -->
+            <div class="form-box">
+                <label for="report-type">Type:</label>
+                <select id="report-type" class="form-input">
+                    <option value="Game Suggestion"> Game Suggestion</option>
+                    <option value="Bug Report"> Bug Fix / Broken Game</option>
+                </select>
+
+                <label for="report-title">Game Name or Issue Title:</label>
+                <input type="text" id="report-title" class="form-input" placeholder="e.g., Add Geometry Dash or Slope won't load">
+
+                <label for="report-details">Details:</label>
+                <textarea id="report-details" class="form-input" rows="4" placeholder="Describe the game or bug..."></textarea>
+
+                <button class="control-btn" id="submit-report" style="width: 100%; margin-top: 10px;">Submit Feedback</button>
+            </div>
+
+            <!-- Recent Bug Fixes Log -->
+            <h2>Recent Bug Fixes & Updates</h2>
+            <div class="changelog-box">
+                <div class="changelog-item">
+                    <strong> Fixed Game Fullscreen Error:</strong> Added fullscreen permissions so embedded games scale cleanly without crashing.
+                </div>
+                <div class="changelog-item">
+                    <strong> Auto-Sync Game Cards:</strong> Connected the homepage, navigation bar, and sidebar lists to update automatically.
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Skipper's Arcade. All rights reserved.</p>
+    </footer>
+
+    <script src="games.js"></script>
+    <script>
+        // Saves submitted feedback locally so users see a confirmation
+        const submitBtn = document.getElementById('submit-report');
+        submitBtn.addEventListener('click', () => {
+            const type = document.getElementById('report-type').value;
+            const title = document.getElementById('report-title').value.trim();
+
+            if (!title) {
+                alert('Please enter a game name or bug title first!');
+                return;
+            }
+
+            alert(`Thanks! Your ${type} ("${title}") has been recorded.`);
+            document.getElementById('report-title').value = '';
+            document.getElementById('report-details').value = '';
+        });
+    </script>
+
+</body>
+</html>

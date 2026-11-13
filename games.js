@@ -22,10 +22,16 @@ if (navContainer) {
         navContainer.appendChild(navLink);
     });
 
-    // Adds the Suggestions & Bug Fixes tab to the navigation bar
+
+       // Adds the Suggestions & Bug Fixes tab to the navigation bar
     const suggestLink = document.createElement('a');
     suggestLink.className = 'nav-item suggest-tab';
-    suggestLink.textContent = 'Suggestions & Bugs';
-    suggestLink.href = 'suggestions.html';
+    suggestLink.textContent = 'Suggestions & Bugs'; //Name of the tab for suggestions and bug fixes
+    
+    // Paste your Google Form link inside the quotes below
+    suggestLink.href = 'https://forms.gle/96Vhd8dUhSae7YqaA';
+    suggestLink.target = '_blank'; // Opens the form in a new tab so players don't lose their game
+    
     navContainer.appendChild(suggestLink);
+
 }

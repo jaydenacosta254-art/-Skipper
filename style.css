@@ -556,8 +556,8 @@ h2 {
     gap: 8px; /* Closer, cleaner gap between the icon and text */
     height: 38px;
     box-sizing: border-box;
-    background-color: #221d33;
-    border: 2px solid #4a3b69;
+    background-color: #171322;
+    border: 2px solid #2f2a38;
     border-radius: 999px;
     padding: 0 14px 0 8px; /* Tighter left padding so the circle hugs the left curve of the pill */
     transition: border-color 0.2s ease, box-shadow 0.2s ease;

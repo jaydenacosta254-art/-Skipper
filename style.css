@@ -566,10 +566,14 @@ h2 {
     box-shadow: 0 0 12px rgba(168, 85, 247, 0.35);
 }
 
-.search-icon {
-    font-size: 14px;
-    opacity: 0.75;
+.search-icon-img {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    opacity: 0.85;
+    flex-shrink: 0;
 }
+
 
 #arcade-live-search {
     width: 100%;

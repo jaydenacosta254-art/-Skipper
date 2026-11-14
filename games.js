@@ -79,3 +79,43 @@ if (navbar) {
     dropdownWrapper.appendChild(dropdownMenu);
     navbar.appendChild(dropdownWrapper);
 }
+
+// 3. EASY UPDATES BAR LIST (Add new updates right at the top!)
+// Example on how to add new updates to the siteUpdates array
+// Simply add this, "Example update message" to the siteUpdates array
+const siteUpdates = [
+    "Nov 14: Added new games and upgraded the top Games dropdown menu.",
+    "Nov 13: Fixed Fullscreen and Theater Mode scaling on smaller screens.",
+];
+
+// Automatically creates and displays the Updates Bar below the navbar
+const headerEl = document.querySelector('header');
+if (headerEl && siteUpdates.length > 0) {
+    const updateBar = document.createElement('div');
+    updateBar.className = 'updates-bar';
+
+    let currentIndex = 0;
+
+    updateBar.innerHTML = `
+        <span class="update-badge">UPDATES</span>
+        <span class="update-text" id="update-display">${siteUpdates[0]}</span>
+        <button class="update-next-btn" id="next-update-btn" title="Next update">Next ▸</button>
+    `;
+
+    // Inserts the bar directly underneath your top navigation bar
+    headerEl.insertAdjacentElement('afterend', updateBar);
+
+    const updateTextEl = document.getElementById('update-display');
+    const nextBtn = document.getElementById('next-update-btn');
+
+    function showNextUpdate() {
+        currentIndex = (currentIndex + 1) % siteUpdates.length;
+        updateTextEl.textContent = siteUpdates[currentIndex];
+    }
+
+    // Lets visitors click "Next ▸" to cycle through updates manually
+    nextBtn.addEventListener('click', showNextUpdate);
+
+    // Automatically cycles to the next update every 6 seconds
+    setInterval(showNextUpdate, 6000);
+}

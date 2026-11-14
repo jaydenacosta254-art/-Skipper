@@ -493,3 +493,51 @@ h2 {
     border-color: #4fc3f7;
     color: #4fc3f7;
 }
+
+/* Easy Updates Bar Styling */
+.updates-bar {
+    background-color: #16161c;
+    border-bottom: 1px solid #292933;
+    padding: 8px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 13px;
+    color: #e0e0e0;
+}
+
+.update-badge {
+    background-color: #4fc3f7;
+    color: #121214;
+    font-weight: bold;
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.update-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.update-next-btn {
+    background-color: #25252d;
+    color: #4fc3f7;
+    border: 1px solid #32323e;
+    border-radius: 4px;
+    padding: 3px 8px;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.update-next-btn:hover {
+    background-color: #4fc3f7;
+    color: #121214;
+}

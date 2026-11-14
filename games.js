@@ -49,7 +49,7 @@ if (navbar) {
     searchWrapper.className = 'nav-search-wrapper';
     searchWrapper.innerHTML = `
         <div class="nav-search-pill">
-            <span class="search-icon">🔍</span>
+            <span class="search-icon"></span>
             <input type="text" id="arcade-live-search" placeholder="Search games..." autocomplete="off">
         </div>
         <div class="search-results-popup" id="search-results-popup">
@@ -133,7 +133,7 @@ if (navbar) {
         searchPopup.classList.remove('active');
     });
 
-    
+
     // Right Side: Multi-Column "Games" Dropdown Menu
     const dropdownWrapper = document.createElement('div');
     dropdownWrapper.className = 'games-dropdown';

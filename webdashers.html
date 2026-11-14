@@ -26,15 +26,13 @@
 </header>
 
 
-    <!-- Clean Arcade Grid Layout Container -->
-    <div class="arcade-layout">
+    <!-- Updated Arcade Layout -->
+        <div class="arcade-layout">
 
-        <!-- Left Sidebar Rail -->
-        <div class="sidebar" id="left-sidebar-grid">
-            <h3>Hot Games</h3>
-        </div>
+        <!-- Empty Spacer on the Left (Balances the right sidebar so the game stays dead-center) -->
+        <div class="left-spacer"></div>
 
-        <!-- Single Center Main Stage Panel -->
+        <!-- Center Game Stage -->
         <div class="game-stage" id="main-stage">
             <div class="game-frame-container" id="frame-container">
                 <iframe src="https://web-dashers.github.io/" id="game-iframe" allow="fullscreen" allowfullscreen></iframe>
@@ -46,69 +44,69 @@
             </div>
         </div>
 
-        <!-- Right Sidebar Rail -->
+        <!-- Single Right Sidebar with All Games -->
         <div class="sidebar right" id="right-sidebar-grid">
-            <h3>You May Also Like</h3>
+            <h3>All games</h3>
         </div>
 
     </div>
+
 
    
         <!-- Load the shared master list first -->
 <script src="games.js"></script>
 
 <!-- Then build the sidebars and player controls -->
-<script>
-    const leftSidebar = document.getElementById('left-sidebar-grid');
-    const rightSidebar = document.getElementById('right-sidebar-grid');
-    const mainIframe = document.getElementById('game-iframe');
+    <script src="games.js"></script>
+    <script>
+        const rightSidebar = document.getElementById('right-sidebar-grid');
+        const mainIframe = document.getElementById('game-iframe');
 
-    masterGamesList.forEach((game, index) => {
-        const miniCard = document.createElement('div');
-        miniCard.className = "mini-card";
-        miniCard.onclick = () => launchGame(game.url);
-        miniCard.innerHTML = `
-            <img src="${game.image}" alt="${game.name} Cover" class="mini-game-image">
-            <div class="mini-overlay">
-                <span class="mini-title">${game.name}</span>
-            </div>
-        `;
-
-        if (index % 2 === 0) {
-            leftSidebar.appendChild(miniCard);
-        } else {
+        // Put EVERY game into the single right sidebar
+        masterGamesList.forEach(game => {
+            const miniCard = document.createElement('div');
+            miniCard.className = "mini-card";
+            miniCard.onclick = () => launchGame(game.url);
+            miniCard.innerHTML = `
+                <img src="${game.image}" alt="${game.name} Cover" class="mini-game-image">
+                <div class="mini-overlay">
+                    <span class="mini-title">${game.name}</span>
+                </div>
+            `;
             rightSidebar.appendChild(miniCard);
+        });
+
+        function launchGame(gameUrl) {
+            mainIframe.src = gameUrl;
         }
-    });
 
-    function launchGame(gameUrl) {
-        mainIframe.src = gameUrl;
-    }
-
-    const urlParameters = new URLSearchParams(window.location.search);
-    const targetGameUrl = urlParameters.get('game');
-    if (targetGameUrl) {
-        mainIframe.src = targetGameUrl;
-    }
-
-    const theaterBtn = document.getElementById('theater-toggle');
-    const fullscreenBtn = document.getElementById('fullscreen-toggle');
-    const sidebars = document.querySelectorAll('.sidebar');
-    const frameContainer = document.getElementById('frame-container');
-
-    theaterBtn.addEventListener('click', () => {
-        sidebars.forEach(sidebar => sidebar.classList.toggle('hide-sidebar'));
-        frameContainer.classList.toggle('theater-grow');
-        theaterBtn.textContent = frameContainer.classList.contains('theater-grow') ? '🎬 Normal View' : '🎬 Theater Mode';
-    });
-
-    fullscreenBtn.addEventListener('click', () => {
-        if (!document.fullscreenElement) {
-            frameContainer.requestFullscreen().catch(err => alert(`Fullscreen error: ${err.message}`));
-        } else {
-            document.exitFullscreen();
+        const urlParameters = new URLSearchParams(window.location.search);
+        const targetGameUrl = urlParameters.get('game');
+        if (targetGameUrl) {
+            mainIframe.src = targetGameUrl;
         }
-    });
-</script>
+
+        const theaterBtn = document.getElementById('theater-toggle');
+        const fullscreenBtn = document.getElementById('fullscreen-toggle');
+        const rightRail = document.getElementById('right-sidebar-grid');
+        const leftSpacer = document.querySelector('.left-spacer');
+        const frameContainer = document.getElementById('frame-container');
+
+        theaterBtn.addEventListener('click', () => {
+            rightRail.classList.toggle('hide-sidebar');
+            if (leftSpacer) leftSpacer.classList.toggle('hide-sidebar');
+            frameContainer.classList.toggle('theater-grow');
+            theaterBtn.textContent = frameContainer.classList.contains('theater-grow') ? '🎬 Normal View' : '🎬 Theater Mode';
+        });
+
+        fullscreenBtn.addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                frameContainer.requestFullscreen().catch(err => alert(`Fullscreen error: ${err.message}`));
+            } else {
+                document.exitFullscreen();
+            }
+        });
+    </script>
+
 </body>
 </html>

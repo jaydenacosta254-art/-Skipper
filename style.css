@@ -585,6 +585,7 @@ h2 {
     border: none;
     color: #ffffff;
     font-size: 14px;
+    padding-left: 6px; /* Nudges "Search games..." to the right without moving the icon */
     outline: none;
 }
 

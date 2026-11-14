@@ -49,7 +49,7 @@ if (navbar) {
     searchWrapper.className = 'nav-search-wrapper';
     searchWrapper.innerHTML = `
         <div class="nav-search-pill">
-            <span class="search-icon"></span>
+            <img src="https://www.canva.com/design/DAHa7A015ew/Ytys4iStphSb0boZip1fTQ/view" alt="Search" class="search-icon-img">
             <input type="text" id="arcade-live-search" placeholder="Search games..." autocomplete="off">
         </div>
         <div class="search-results-popup" id="search-results-popup">

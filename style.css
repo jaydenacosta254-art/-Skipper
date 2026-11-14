@@ -70,12 +70,91 @@ body {
     margin-right: 20px;
 }
 
-.nav-links {
+/* Left Corner Group (Brand + Suggestions Tab) */
+.nav-left-group {
     display: flex;
-    gap: 10px;
-    overflow-x: auto;
-    padding-bottom: 2px;
+    align-items: center;
+    gap: 14px;
 }
+
+/* Remove extra right margin on brand link since gap handles spacing */
+.nav-brand {
+    color: #4fc3f7;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+/* Right Side Dropdown Container */
+.games-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* "Games ▾" Button */
+.dropdown-trigger {
+    background-color: #25252d;
+    color: #ffffff;
+    border: 1px solid #32323e;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.dropdown-trigger:hover {
+    background-color: #4fc3f7;
+    color: #121214;
+    border-color: #4fc3f7;
+}
+
+/* Multi-Column Dropdown Panel (3 games tall, expands leftwards) */
+.dropdown-columns {
+    display: none;
+    position: absolute;
+    right: 0; /* Anchors to the right edge so extra columns expand to the LEFT */
+    top: calc(100% + 8px);
+    background-color: #1a1a1f;
+    border: 1px solid #32323e;
+    border-radius: 10px;
+    padding: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.85);
+    z-index: 2000;
+
+    /* Stacks 3 items vertically, then creates new columns to the side */
+    grid-template-rows: repeat(3, auto);
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(150px, auto);
+    gap: 8px;
+}
+
+/* Shows the grid when clicked or hovered */
+.dropdown-columns.show-menu,
+.games-dropdown:hover .dropdown-columns {
+    display: grid;
+}
+
+/* Individual Game Links inside the Dropdown */
+.dropdown-game-item {
+    color: #e0e0e0;
+    background-color: #25252d;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 6px;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.dropdown-game-item:hover {
+    background-color: #4fc3f7;
+    color: #121214;
+}
+
 
 .nav-item {
     color: #e0e0e0;

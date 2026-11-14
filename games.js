@@ -17,26 +17,65 @@ const masterGamesList = [
 
 
 
-const navContainer = document.getElementById('navbar-games');
-if (navContainer) {
-    masterGamesList.forEach(game => {
-        const navLink = document.createElement('a');
-        navLink.className = 'nav-item';
-        navLink.textContent = game.name;
-        navLink.href = `webdashers.html?game=${encodeURIComponent(game.url)}`;
-        navContainer.appendChild(navLink);
-    });
+// 2. Automatically build the upgraded Top Navigation Bar on EVERY page
+const navbar = document.querySelector('.arcade-navbar');
+if (navbar) {
+    // Keep your existing brand link ("Skipper's Arcade" or "← Back to Hub")
+    const brandLink = navbar.querySelector('.nav-brand');
 
+    // Clear the old scrolling bar to rebuild it cleanly
+    navbar.innerHTML = '';
 
-       // Adds the Suggestions & Bug Fixes tab to the navigation bar
+    // Left Side: Brand Heading + Suggestions Tab right next to it
+    const leftGroup = document.createElement('div');
+    leftGroup.className = 'nav-left-group';
+
+    if (brandLink) {
+        leftGroup.appendChild(brandLink);
+    }
+
     const suggestLink = document.createElement('a');
     suggestLink.className = 'nav-item suggest-tab';
-    suggestLink.textContent = 'Suggestions & Bugs'; //Name of the tab for suggestions and bug fixes
-    
-    // Paste your Google Form link inside the quotes below
+    suggestLink.textContent = 'Suggestions & Bugs';
+    // Keep your Google Form link or 'suggestions.html' here
     suggestLink.href = 'https://forms.gle/96Vhd8dUhSae7YqaA';
-    suggestLink.target = '_blank'; // Opens the form in a new tab so players don't lose their game
-    
-    navContainer.appendChild(suggestLink);
+    suggestLink.target = '_blank';
+    leftGroup.appendChild(suggestLink);
 
+    navbar.appendChild(leftGroup);
+
+    // Right Side: Multi-Column "Games" Dropdown Menu
+    const dropdownWrapper = document.createElement('div');
+    dropdownWrapper.className = 'games-dropdown';
+
+    const dropdownBtn = document.createElement('button');
+    dropdownBtn.className = 'dropdown-trigger';
+    dropdownBtn.innerHTML = 'Games ▾';
+
+    const dropdownMenu = document.createElement('div');
+    dropdownMenu.className = 'dropdown-columns';
+
+    // Fill the dropdown menu with all games from masterGamesList
+    masterGamesList.forEach(game => {
+        const gameLink = document.createElement('a');
+        gameLink.className = 'dropdown-game-item';
+        gameLink.textContent = game.name;
+        gameLink.href = `webdashers.html?game=${encodeURIComponent(game.url)}`;
+        dropdownMenu.appendChild(gameLink);
+    });
+
+    // Toggle menu open/closed when clicked
+    dropdownBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdownMenu.classList.toggle('show-menu');
+    });
+
+    // Close menu automatically when clicking anywhere else on the page
+    document.addEventListener('click', () => {
+        dropdownMenu.classList.remove('show-menu');
+    });
+
+    dropdownWrapper.appendChild(dropdownBtn);
+    dropdownWrapper.appendChild(dropdownMenu);
+    navbar.appendChild(dropdownWrapper);
 }

@@ -541,6 +541,7 @@ h2 {
     background-color: #334a55;
     color: #121214;
 }
+/* Lines 544 and lines 668 is all for the search bar and its popup */
 /* Pill Search Bar & Floating 3-Column Results Popup */
 .nav-search-wrapper {
     position: relative;

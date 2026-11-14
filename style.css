@@ -178,6 +178,13 @@ h2 {
     min-height: calc(100vh - 58px); /* Allows scrolling if content ever exceeds screen height */
 }
 
+/* Invisible Left Spacer (Matches the right sidebar width so the center stage stays centered) */
+.left-spacer {
+    width: 220px;
+    flex-shrink: 0;
+    
+}
+
 .sidebar {
     width: 220px; /* Slightly narrower so the game gets more room on laptops */
     background-color: #16161a;
@@ -336,7 +343,9 @@ h2 {
         height: 55vh;
         min-height: 280px;
     }
-
+    .left-spacer {
+        display: none;
+    }
     .sidebar {
         width: 100%;
         border-right: none;

@@ -39,8 +39,8 @@
             </div>
 
             <div class="controls-panel">
-                <button class="control-btn" id="theater-toggle">🎬 Theater Mode</button>
-                <button class="control-btn" id="fullscreen-toggle">🖵 Fullscreen</button>
+                <button class="control-btn" id="theater-toggle">Theater Mode</button>
+                <button class="control-btn" id="fullscreen-toggle">Fullscreen</button>
             </div>
         </div>
 
@@ -96,7 +96,7 @@
             rightRail.classList.toggle('hide-sidebar');
             if (leftSpacer) leftSpacer.classList.toggle('hide-sidebar');
             frameContainer.classList.toggle('theater-grow');
-            theaterBtn.textContent = frameContainer.classList.contains('theater-grow') ? '🎬 Normal View' : '🎬 Theater Mode';
+            theaterBtn.textContent = frameContainer.classList.contains('theater-grow') ? 'Normal View' : 'Theater Mode';
         });
 
         fullscreenBtn.addEventListener('click', () => {

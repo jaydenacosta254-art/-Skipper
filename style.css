@@ -553,13 +553,13 @@ h2 {
 .nav-search-pill {
     display: flex;
     align-items: center;
-    gap: 10px;
-    height: 38px; /* Locks the search bar height so it never stretches */
+    gap: 8px; /* Closer, cleaner gap between the icon and text */
+    height: 38px;
     box-sizing: border-box;
     background-color: #221d33;
     border: 2px solid #4a3b69;
     border-radius: 999px;
-    padding: 0 16px; /* Uses horizontal padding only since height is locked */
+    padding: 0 14px 0 8px; /* Tighter left padding so the circle hugs the left curve of the pill */
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -569,12 +569,14 @@ h2 {
 }
 
 .search-icon-img {
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%; /* Turns the image box into a true circle */
+    object-fit: cover; /* Fills the circle evenly without stretching or distorting the chicken */
+    object-position: center; /* Keeps the chicken dead-center inside the circle */
+    background-color: #ffffff; /* Optional: gives a crisp white circular badge behind the black magnifying glass */
+    padding: 2px; /* Keeps the handle from touching the edge of the circle */
     flex-shrink: 0;
-    transform: scale(1.4); /* Visually zooms the chicken icon without pushing the bar taller */
-    transform-origin: center;
 }
 
 

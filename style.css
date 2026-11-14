@@ -675,3 +675,11 @@ h2 {
 .search-see-all:hover {
     color: #a855f7;
 }
+
+.copyright{
+    text-align: center;
+    font-size: 12px;
+    color: #9ca3af;
+    padding: 12px 0;
+    font-style: italic;
+}

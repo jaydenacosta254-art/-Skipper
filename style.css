@@ -545,9 +545,9 @@ h2 {
 /* Pill Search Bar & Floating 3-Column Results Popup */
 .nav-search-wrapper {
     position: relative;
-    flex: 1;
-    max-width: 360px;
-    margin: 0 16px;
+    width: 100%;
+    max-width: 320px; /* Keeps the pill compact on the right */
+    margin: 0 14px 0 auto; /* Pushes the entire search bar to the right side */
 }
 
 .nav-search-pill {

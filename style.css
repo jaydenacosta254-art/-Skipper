@@ -553,7 +553,7 @@ h2 {
 .nav-search-pill {
     display: flex;
     align-items: center;
-    gap: 0px; /* Closer, cleaner gap between the icon and text */
+    gap: -2px; /* Closer, cleaner gap between the icon and text */
     height: 38px;
     box-sizing: border-box;
     background-color: #171322;

@@ -541,3 +541,127 @@ h2 {
     background-color: #334a55;
     color: #121214;
 }
+/* Pill Search Bar & Floating 3-Column Results Popup */
+.nav-search-wrapper {
+    position: relative;
+    flex: 1;
+    max-width: 360px;
+    margin: 0 16px;
+}
+
+.nav-search-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #221d33;
+    border: 2px solid #4a3b69;
+    border-radius: 999px;
+    padding: 7px 16px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nav-search-pill:focus-within {
+    border-color: #a855f7;
+    box-shadow: 0 0 12px rgba(168, 85, 247, 0.35);
+}
+
+.search-icon {
+    font-size: 14px;
+    opacity: 0.75;
+}
+
+#arcade-live-search {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 14px;
+    outline: none;
+}
+
+#arcade-live-search::placeholder {
+    color: #9ca3af;
+}
+
+/* Floating Dark Card Below Search Bar */
+.search-results-popup {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 340px;
+    background-color: #191526;
+    border: 1px solid #352c4d;
+    border-radius: 18px;
+    padding: 16px;
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.85);
+    z-index: 3000;
+}
+
+.search-results-popup.active {
+    display: block;
+}
+
+/* 3-Column Thumbnail Grid inside Popup */
+.search-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.popup-game-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: #e5e7eb;
+    transition: transform 0.15s ease;
+}
+
+.popup-game-card:hover {
+    transform: scale(1.05);
+    color: #ffffff;
+}
+
+.popup-thumb {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 14px;
+    background-color: #262038;
+    border: 1px solid #352c4d;
+    margin-bottom: 6px;
+}
+
+.popup-title {
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.no-search-hits {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #9ca3af;
+    font-size: 13px;
+    padding: 12px 0;
+}
+
+/* "See all results ->" Footer Link */
+.search-see-all {
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px solid #2b2340;
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+    color: #e5e7eb;
+    cursor: pointer;
+    transition: color 0.15s ease;
+}
+
+.search-see-all:hover {
+    color: #a855f7;
+}

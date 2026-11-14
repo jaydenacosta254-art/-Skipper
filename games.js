@@ -44,6 +44,96 @@ if (navbar) {
 
     navbar.appendChild(leftGroup);
 
+        // Middle: Pill Search Bar with Floating 3-Column Game Grid Dropdown
+    const searchWrapper = document.createElement('div');
+    searchWrapper.className = 'nav-search-wrapper';
+    searchWrapper.innerHTML = `
+        <div class="nav-search-pill">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="arcade-live-search" placeholder="Search games..." autocomplete="off">
+        </div>
+        <div class="search-results-popup" id="search-results-popup">
+            <div class="search-grid" id="search-popup-grid"></div>
+            <div class="search-see-all" id="search-see-all">See all results →</div>
+        </div>
+    `;
+    navbar.appendChild(searchWrapper);
+
+    const searchInput = document.getElementById('arcade-live-search');
+    const searchPopup = document.getElementById('search-results-popup');
+    const searchGrid = document.getElementById('search-popup-grid');
+    const seeAllBtn = document.getElementById('search-see-all');
+
+    let showAllMatches = false;
+
+    function renderSearchResults(queryText) {
+        const q = queryText.trim().toLowerCase();
+        if (!q) {
+            searchPopup.classList.remove('active');
+            showAllMatches = false;
+            return;
+        }
+
+        const matches = masterGamesList.filter(g => g.name.toLowerCase().includes(q));
+        searchGrid.innerHTML = '';
+
+        if (matches.length === 0) {
+            searchGrid.innerHTML = `<div class="no-search-hits">No games found for "${queryText}"</div>`;
+            seeAllBtn.style.display = 'none';
+        } else {
+            // Shows up to 6 cards (2 rows of 3) unless "See all results" is clicked
+            const visibleGames = showAllMatches ? matches : matches.slice(0, 6);
+
+            visibleGames.forEach(game => {
+                const item = document.createElement('a');
+                item.className = 'popup-game-card';
+                item.href = `webdashers.html?game=${encodeURIComponent(game.url)}`;
+                item.innerHTML = `
+                    <img src="${game.image}" alt="${game.name}" class="popup-thumb">
+                    <span class="popup-title">${game.name}</span>
+                `;
+                searchGrid.appendChild(item);
+            });
+
+            if (matches.length > 6 && !showAllMatches) {
+                seeAllBtn.style.display = 'block';
+                seeAllBtn.textContent = `See all results (${matches.length}) →`;
+            } else {
+                seeAllBtn.style.display = 'none';
+            }
+        }
+
+        searchPopup.classList.add('active');
+    }
+
+    searchInput.addEventListener('input', (e) => {
+        showAllMatches = false;
+        renderSearchResults(e.target.value);
+    });
+
+    searchInput.addEventListener('focus', (e) => {
+        if (e.target.value.trim()) {
+            searchPopup.classList.add('active');
+        }
+    });
+
+    seeAllBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        showAllMatches = true;
+        renderSearchResults(searchInput.value);
+    });
+
+    // Prevents closing when clicking inside the search box or popup
+    searchWrapper.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+
+    // Closes the popup when clicking anywhere else on the page
+    document.addEventListener('click', () => {
+        searchPopup.classList.remove('active');
+    });
+
+    
     // Right Side: Multi-Column "Games" Dropdown Menu
     const dropdownWrapper = document.createElement('div');
     dropdownWrapper.className = 'games-dropdown';

@@ -252,9 +252,9 @@ h2 {
 /* Arcade Game Player Layout (webdashers.html) */
 .arcade-layout {
     display: flex;
-    flex: 1;
     width: 100%;
-    min-height: calc(100vh - 58px); /* Allows scrolling if content ever exceeds screen height */
+    height: calc(100vh - 58px); /* Fits the exact remaining screen below the navbar */
+    overflow: hidden; /* Prevents the main page from scrolling down */
 }
 
 /* Invisible Left Spacer (Matches the right sidebar width so the center stage stays centered) */
@@ -264,15 +264,17 @@ h2 {
     
 }
 
+/* Right Sidebar with independent scrolling */
 .sidebar {
-    width: 220px; /* Slightly narrower so the game gets more room on laptops */
+    width: 220px;
+    height: 100%; /* Matches the locked layout height */
     background-color: #16161a;
     padding: 16px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     gap: 12px;
-    overflow-y: auto;
+    overflow-y: auto; /* Adds a dedicated scrollbar just for the game list */
     border-right: 1px solid #25252b;
     flex-shrink: 0;
 }
@@ -334,15 +336,17 @@ h2 {
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
+/* Moves the active game higher up toward the top */
 .game-stage {
     flex: 1;
-    min-width: 0; /* Prevents flex items from overflowing horizontally */
+    min-width: 0;
+    height: 100%;
     background-color: #0b0b0d;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 16px;
+    justify-content: flex-start; /* Aligns the game near the top instead of vertical center */
+    padding: 12px 16px 16px 16px; /* Small top gap so it sits high and clean */
     box-sizing: border-box;
 }
 

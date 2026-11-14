@@ -174,8 +174,14 @@ if (navbar) {
 // Example on how to add new updates to the siteUpdates array
 // Simply add this, "Example update message" to the siteUpdates array
 const siteUpdates = [
+    "Nov 14: Added a easter egg to the search bar aswell (Hint: look closely at the left part of the search bar).",
     "Nov 14: Added new games and upgraded the top Games dropdown menu.",
     "Nov 13: Fixed Fullscreen and Theater Mode scaling on smaller screens.",
+    "Nov 12: Improved search bar functionality and added live search results.",
+    "Nov 11: Added new features to the search bar and improved user experience.",
+    "Nov 10: Added new games and improved overall performance.",
+    "Nov 9: Added Chicken Royale as the first game.",
+    "Nov 9: Website launch day.",
 ];
 
 // Automatically creates and displays the Updates Bar below the navbar

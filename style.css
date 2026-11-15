@@ -569,10 +569,10 @@ h2 {
 }
 
 .search-icon-img {
-    width: 35px;
+    width: 30px;
     height: 35px;
     background-color: #171322;
-    border-radius: 60%; /* Turns the image box into a true circle */
+    border-radius: 50%; /* Turns the image box into a true circle */
     object-fit: cover; /* Fills the circle evenly without stretching or distorting the chicken */
     object-position: center; /* Keeps the chicken dead-center inside the circle */
     padding: 2px; /* Keeps the handle from touching the edge of the circle */

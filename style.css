@@ -570,7 +570,7 @@ h2 {
 
 .search-icon-img {
     width: 30px;
-    height: 35px;
+    height: 24px;
     background-color: #171322;
     border-radius: 50%; /* Turns the image box into a true circle */
     object-fit: cover; /* Fills the circle evenly without stretching or distorting the chicken */

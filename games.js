@@ -10,7 +10,7 @@ const masterGamesList = [
     { name: "Wacky Flip", url: "https://game.azgame.io/wacky-flip/", image: "https://wacky-flip.io/data/image/wacky-flip.png" },
     { name: "Shell Shockers", url: "https://mathlete.pages.dev", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyK8_Jlb56iBIOCcZ0hgtyzz3JncKjsfZNQM68GR3ND6Dg1N3ce1Jv4rQI4T2v8SsEYEEnBlcO-uUGGaB52Q5hisiJTzS_nlH9USIE9g&s=10" },
     { name: "Escape Road", url: "https://d1wnrmoe2jrw0g.cloudfront.net/html/escape_car/index.html", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSySzgjwAIlHNzeP5IWzOF3FDr6KdN1C57q9ZcKTCB9zg&s" },
-    { name: "FNAF 1", url: "https://ubgwtf.gitlab.io/fnaf/", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwc6M1823U4lr1QhLL5ANLPZGByxrnOLM1cFtlBQI9LJ4d5j1m3InWX5GiCddzyKDIj7_3e3_wox5IdsdWXq14zI_rsS9mGkdaSuPrEXkuGjUoqTs&s=10&ec=122259001" },
+    { name: "Crossy Road", url: "https://tataedu23.github.io/g20/class-402/", image: "https://img.poki-cdn.com/cdn-cgi/image/q=78,scq=50,width=314,height=314,fit=cover,f=auto/76fc1b000203faf71b77a75b10022142/crossy-road-logo.png" },
     { name: "Eaglercraft 1.5.2", url: "https://gnhustgames.org/eaglercraft-source/", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGoaDk2SSBvjkwZErZeLoL3nub24VJWT9hrmrMRIEo4A&s=10" },
     { name: "Doom", url: "https://dosdeck.com/game/doom", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqO_MS3eZB1W2YWSqLN7lewya9rCK23uwLqgc9MeN8_I8NNSzoeCvzEQxORemhFXS7zhJVngcmeQqCIfgWne82Y-h-gzrGnQxUnm9ChqKWfMIEcfo&s&ec=122259001" },
 ];

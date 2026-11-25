@@ -155,7 +155,7 @@
 
             // Animate progress bar smoothly over 2.6 seconds
             requestAnimationFrame(() => {
-                gtaBarFill.style.transition = 'width 2.6s cubic-bezier(0.22, 1, 0.36, 1)';
+                gtaBarFill.style.transition = 'width 4.6s cubic-bezier(0.22, 1, 0.36, 1)';
                 gtaBarFill.style.width = '100%';
             });
 
@@ -164,8 +164,8 @@
                 gtaLoader.classList.add('fade-out');
                 setTimeout(() => {
                     gtaLoader.style.display = 'none';
-                }, 400);
-            }, 2700);
+                }, 600);
+            }, 5000);
         }
 
         function launchGame(gameUrl, gameName = "") {

@@ -36,6 +36,28 @@
         <!-- Center Game Stage -->
         <div class="game-stage" id="main-stage">
             <div class="game-frame-container" id="frame-container">
+                            <div class="game-frame-container" id="frame-container">
+                <!-- GTA-Style Loading Overlay -->
+                <div class="gta-loader" id="gta-loader">
+                    <img src="loading1.png" alt="Loading Art" class="gta-bg-img" id="gta-bg-img">
+                    <div class="gta-vignette"></div>
+
+                    <div class="gta-secret-tag" id="gta-secret-tag">★ SECRET LOADING SCREEN ★</div>
+
+                    <div class="gta-bottom-hud">
+                        <div class="gta-tip-box">
+                            <span class="gta-game-label" id="gta-game-label">LOADING GAME...</span>
+                            <p class="gta-tip-text" id="gta-tip-text">Pro Tip: Use Theater Mode for a wider view!</p>
+                        </div>
+                        <div class="gta-bar-track">
+                            <div class="gta-bar-fill" id="gta-bar-fill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <iframe src="https://github.io" id="game-iframe" allow="fullscreen" allowfullscreen></iframe>
+            </div>
+
                 <iframe src="https://web-dashers.github.io/" id="game-iframe" allow="fullscreen" allowfullscreen></iframe>
             </div>
 
@@ -77,15 +99,95 @@
             rightSidebar.appendChild(miniCard);
         });
 
-        function launchGame(gameUrl) {
-            mainIframe.src = gameUrl;
+                // ==========================================
+        // GTA LOADING SCREEN SETTINGS (EDIT IMAGES HERE)
+        // ==========================================
+        const normalLoadingPics = [
+            "loading1.png",
+            "loading2.png"
+        ];
+        const secretLoadingPic = "secret-loading.png";
+        const secretChance = 0.15; // 15% chance to trigger the secret loading screen!
+
+        const loadingTips = [
+            "TIP: Press the Fullscreen button below for the best experience.",
+            "TIP: Found a broken game? Report it in the Suggestions & Bugs tab!",
+            "TIP: Check the top Updates bar for newly added games.",
+            "TIP: Use Theater Mode to hide the sidebar while playing."
+        ];
+
+        const gtaLoader = document.getElementById('gta-loader');
+        const gtaBgImg = document.getElementById('gta-bg-img');
+        const gtaSecretTag = document.getElementById('gta-secret-tag');
+        const gtaGameLabel = document.getElementById('gta-game-label');
+        const gtaTipText = document.getElementById('gta-tip-text');
+        const gtaBarFill = document.getElementById('gta-bar-fill');
+
+        let loadTimer = null;
+
+        function playGtaLoadingScreen(gameName) {
+            clearTimeout(loadTimer);
+
+            // Reset progress bar and show loader
+            gtaLoader.classList.remove('fade-out');
+            gtaLoader.style.display = 'flex';
+            gtaBarFill.style.transition = 'none';
+            gtaBarFill.style.width = '0%';
+
+            // Restart the slow GTA camera pan/zoom animation
+            gtaBgImg.classList.remove('ken-burns');
+            void gtaBgImg.offsetWidth; // Forces browser to restart animation
+            gtaBgImg.classList.add('ken-burns');
+
+            // Roll the dice for the Secret Loading Screen!
+            const isSecret = Math.random() < secretChance;
+            if (isSecret) {
+                gtaBgImg.src = secretLoadingPic;
+                gtaSecretTag.style.display = 'block';
+                gtaTipText.textContent = "🔥 RARE SCREEN UNLOCKED: You found the secret loading screen!";
+            } else {
+                const randomPic = normalLoadingPics[Math.floor(Math.random() * normalLoadingPics.length)];
+                gtaBgImg.src = randomPic;
+                gtaSecretTag.style.display = 'none';
+                gtaTipText.textContent = loadingTips[Math.floor(Math.random() * loadingTips.length)];
+            }
+
+            gtaGameLabel.textContent = gameName ? `LOADING ${gameName.toUpperCase()}...` : "LOADING ARCADE...";
+
+            // Animate progress bar smoothly over 2.6 seconds
+            requestAnimationFrame(() => {
+                gtaBarFill.style.transition = 'width 2.6s cubic-bezier(0.22, 1, 0.36, 1)';
+                gtaBarFill.style.width = '100%';
+            });
+
+            // Fade out the loading screen once the bar finishes
+            loadTimer = setTimeout(() => {
+                gtaLoader.classList.add('fade-out');
+                setTimeout(() => {
+                    gtaLoader.style.display = 'none';
+                }, 400);
+            }, 2700);
         }
 
+        function launchGame(gameUrl, gameName = "") {
+            // Find the game's display name from masterGamesList if not passed directly
+            if (!gameName && typeof masterGamesList !== 'undefined') {
+                const found = masterGamesList.find(g => g.url === gameUrl);
+                if (found) gameName = found.name;
+            }
+            playGtaLoadingScreen(gameName);
+            mainIframe.src = gameUrl;
+        }
+        // Trigger the loading screen as soon as a player opens any game page
         const urlParameters = new URLSearchParams(window.location.search);
         const targetGameUrl = urlParameters.get('game');
         if (targetGameUrl) {
-            mainIframe.src = targetGameUrl;
+            launchGame(targetGameUrl);
+        } else {
+            launchGame("https://github.io", "Web Dashers");
         }
+        // End of gta loading screen logic
+
 
         const theaterBtn = document.getElementById('theater-toggle');
         const fullscreenBtn = document.getElementById('fullscreen-toggle');
